@@ -5,6 +5,9 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
+		else if(text.contains("//;")){
+			return sum(splitNumbers(replaceNewDelimiter(text)));
+		}
 		else if(text.contains("\n")){
 			return sum(splitNumbers(replaceNewLine(text)));
 		}
@@ -13,24 +16,30 @@ public class Calculator {
 			return 0;
 		}
 		else if(text.contains(",")){
-			return sum(splitNumbers(replaceNewLine(text)));
+			return sum(splitNumbers(text));
 		}
 		else
 			return 1;
 	}
-	
+	private static String replaceNewDelimiter(String text){
+		String newStr = "";
+		newStr = text.replace("\n", "");
+		newStr = newStr.replace("//;", "");
+		newStr = newStr.replace(";", ",");
+		return newStr; 
+	}
 	private static int isNegative(String[] numbers){
 		String strMinus = "";
 		for(String number : numbers){
 			if (Integer.parseInt(number) < 0){
-				strMinus = strMinus + number + ", ";	
+				strMinus = strMinus + number + ",";	
 			}			
 		}	
 		System.err.println("Negatives not allowed: " + strMinus);		
 		return 1;
 	}
 	private static String replaceNewLine(String text){
-		return text.replace("\n", ",");
+		return text.replace("\n", ","); 
 	}
 	private static int toInt(String number){
 		return Integer.parseInt(number);
