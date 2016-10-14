@@ -16,10 +16,25 @@ public class Calculator {
 			return 0;
 		}
 		else if(text.contains(",")){
-			return sum(splitNumbers(text));
+			int summa = 0;
+			summa = sum(splitNumbers(text));
+			if (summa > 1001){
+				summa = largerThanThousand(splitNumbers(text));
+			}
+			return summa;
 		}
 		else
 			return 1;
+	}
+	private static int largerThanThousand(String[] numbers){
+		int num = 0;
+		for (String number : numbers){
+			if (Integer.parseInt(number) > 1000){
+				number = "0";
+			}	
+			num += toInt(number);
+		}	
+		return num;		
 	}
 	private static String replaceNewDelimiter(String text){
 		String newStr = "";
