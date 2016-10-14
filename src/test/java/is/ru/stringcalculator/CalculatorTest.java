@@ -23,8 +23,13 @@ public class CalculatorTest {
     public void testMultipleNumbers(){
     	assertEquals(6, Calculator.add("1\n2,3"));
     }
+	@Test
+    public void testNewLine(){
+    	assertEquals(6, Calculator.add("1\n2,3"));
+    }
     @Test
     public void testNegativeNumbers(){
     	assertEquals(0, Calculator.add("-1,2,-3,4,3,-8,0,-1"));
     }
+     
 }
